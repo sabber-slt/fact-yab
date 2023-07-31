@@ -1,0 +1,35 @@
+{
+  "name": "Fact Yab",
+  "description": "Fact Yab is a Chrome extension that uses OpenAI's GPT-3 to check the tweets facts.",
+  "version": "0.0.5",
+  "manifest_version": 3,
+  "homepage_url": "https://github.com/sabber-slt/fact-yab",
+  "action": {},
+  "permissions": ["scripting", "activeTab", "storage", "clipboardWrite"],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "icons": {
+    "16": "logo-16.png",
+    "32": "logo-32.png",
+    "48": "logo-48.png",
+    "128": "logo-128.png"
+  },
+  "host_permissions": ["https://*.openai.com/"],
+  "background": {
+    "service_worker": "background.bundle.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://twitter.com/*"],
+      "js": ["content_script.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["styles.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
